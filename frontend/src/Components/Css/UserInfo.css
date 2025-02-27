@@ -1,0 +1,49 @@
+.UserInfo-Container{
+  width: 20.3125rem;
+  height: 5rem;
+  background-color: var(--MainButtonBackground);
+  padding: 0.55rem;
+  border-radius: 0.9375rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.UserInfo-Container.Message{
+  width: fit-content;
+  min-width: 15rem;
+}
+
+.UserInfo .Message h2{
+  color: white;
+  font-size: 1.3rem;
+}
+
+.UserInfo .Message h4{
+  color: var(--PrimaryTextColor);
+  font-size: 0.95rem;
+}
+
+
+
+.UserInfo{
+  display: flex;
+  gap: 0.25rem;
+}
+
+.UserInfo .pfp{
+  width: 4rem;
+  height: 4rem;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.UserInfo.Message .Message h2{
+  color: var(--PrimaryTextColor);
+}
+
+.UserInfo.Message .Message h4{
+  font-size: 1.25rem;
+  color: white;
+  padding-left: 0.5rem;
+  padding-top: 0.25rem;
+}

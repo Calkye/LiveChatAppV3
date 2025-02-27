@@ -1,0 +1,55 @@
+.SideBar{
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+
+  .PinnedMessages-Container{
+    flex: 0.45; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .DirectMessages{
+    .Title{
+      color: white;
+      padding-bottom: 0.55rem;
+    }
+  }
+
+  .DirectMessages-Container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+  }
+  .Chat-Container{
+    width: 100%;
+    height: 9.8125rem;
+    display: flex;
+    justify-content: center;
+    .Chats{
+      display: flex;
+      flex-direction: column;
+      width: 21.25rem;
+      height: 8.6875rem;
+      padding-bottom: 0.75rem; //increase the size to increase the distance between the border
+      box-sizing: border-box;
+      border-bottom: 2px solid;
+      border-color: var(--MainBorderColor);
+      .Heading-Settings{
+        display: flex;
+        flex: 1;
+        height: fit-content;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5625rem;
+        box-sizing: border-box;
+        h2{
+          color: white;
+        }
+      }
+    }
+  }
+}

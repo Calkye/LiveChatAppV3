@@ -1,0 +1,158 @@
+.btn-modal{ 
+  width: 2.3125rem; 
+  height: 2.3125rem; 
+  display: block;
+}
+
+.model, .overlay{ 
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay{
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45); /* Green background with 30% opacity */  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.modal-content{
+  background-color: var(--SideBarBackground);
+  border-radius: 0.9375rem;
+  width: 34.375rem;
+  height: 34.375rem;
+  right: 0.3125rem;
+  opacity: 1;
+  padding: 0.45rem;
+  display: flex;
+}
+.Settings{
+  width: 10rem;
+  border-right: 2px solid;
+  border-color: var(--InputPrimaryColor);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Options, ul{
+  width: 100%;
+  height: 100%;
+}
+.Options ul{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.Options ul li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  width: 8rem;
+  height: 2.5rem;
+  background-color: var(--SecondaryButtonColor);
+  border-radius: 0.9375rem;
+  padding: 0.45rem;
+}
+
+.Close-modal{
+  width: 2.5rem;
+  height: 2.5rem;  
+}
+.Top{
+  width: 100%;
+}
+
+.Content{
+  flex: 1;
+}
+
+.Friends-Content-Container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem;
+  
+}
+.Friends-Add{
+  display: flex;
+  gap: 0.45rem;
+}
+.Friends-Add input{
+  padding: 0.5rem;
+  border-radius: 0.9375rem;
+  background-color: var(--InputPrimaryColor);
+  border: none;
+  outline: none;
+}
+
+.Friends-Add button{ 
+  padding: 0.45rem;
+  background-color: var(--SecondaryButtonColor);
+  color: white;
+  border: none;
+  border-radius: 0.3125rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.Requests-Container{
+  margin-top: 1rem;
+  border-top: 2px solid;
+  border-color: var(--InputPrimaryColor);
+  padding-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.Heading{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Heading h3{
+  color: white;
+  text-decoration: underline;
+}
+.Heading h3:hover{
+  cursor: pointer;
+}
+
+.Requests{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.Request{
+  background-color: var(--MainButtonBackground);
+  padding: 0.25rem;
+  border-radius: 0.625rem;
+  padding-left: 0.45rem;
+  padding-right: 0.45rem;
+  width: fit-content;
+}
+
+.Request:hover{
+  cursor: pointer;
+  background-color: var(--PrimaryTextColor);
+}
