@@ -13,24 +13,23 @@ export const FriendContext = createContext({
   Id: [''],
   setId: ()=>{},  
   pfp: [''], 
-  setPfp: ()=>{}
+  setPfp: ()=>{},
+  selectedFriend: '',
+  setSelectedFriend: ()=>{}, 
 });
 
 export const FriendContextProvider = ({children})=>{
   const [clientUsername, setClientUsername] = useSessionStorage("clientUsername", "'"); 
-  const [ friendUsernames, setFriendUsernames ] = useSessionStorage("friendUsernames", "");
+  const [ friendUsernames, setFriendUsernames ] = useState([]);
   const [ addedUsernames, setAddedUsernames] = useState("");  
   const [ Id, setId] = useState(['']); 
   const [pfp, setPfp] = useState(['']); 
-
-  useEffect(()=>{
-    console.log('Adding user: ', addedUsernames); 
+  const [ selectedFriend, setSelectedFriend] = useState('');
 
 
-  }, [addedUsernames])
-
+ 
   return ( 
-    <FriendContext.Provider value={{ clientUsername, setClientUsername, friendUsernames, setFriendUsernames, addedUsernames, setAddedUsernames, Id, setId, pfp, setPfp}}>
+    <FriendContext.Provider value={{ clientUsername, setClientUsername, friendUsernames, setFriendUsernames, addedUsernames, setAddedUsernames, Id, setId, pfp, setPfp, selectedFriend, setSelectedFriend}}>
       {children}
     </FriendContext.Provider>
   )

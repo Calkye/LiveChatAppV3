@@ -27,21 +27,19 @@ class User {
 
 
 
-  CreateAccount(){ 
-    const CreateAccount = async()=>{
-      await axios.post('http://localhost:3000/Users/Create', { 
-        data: { 
-          username: this.username,
-          password: this.password 
-        }
-      }, {withCredentials: true}).then((response)=>{
-        console.log("Response from the server: ", response); 
-        return { Success: true}
-      }).catch((error)=>{
-        console.log("Caught error from the server: ", error.messsage); 
-      })
+  async  CreateAccount(){ 
+    const response = await axios.post('http://localhost:3000/Users/Create', {
+      data: {
+        username: this.username, 
+        password: this.password
+      }
+    }, {withCredentials: true}); 
+    if(response.status === 200){ 
+      return {Success: true}; 
+    }else{
+      return { Success:false}
     }
-    CreateAccount(); 
+    
   }
   async Login(){ 
     try{

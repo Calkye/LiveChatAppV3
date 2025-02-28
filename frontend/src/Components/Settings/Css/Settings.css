@@ -23,6 +23,18 @@
   justify-content: center;
 }
 
+.AddFriendBtn{
+  transition: all 0.1s ease-in-out;
+}
+
+.AddFriendBtn:hover{
+  cursor: pointer;
+  background-color: var(--InputPrimaryColor);
+}
+.AddFriendBtn:active{
+  background-color: var(--PrimaryTextColor);
+}
+
 
 .modal-content{
   background-color: var(--SideBarBackground);

@@ -6,7 +6,7 @@ const GetFriendRequests = (socket, clientUsername, setData)=>{
     socket.emit('GetFriendRequests', clientUsername); 
 
     socket.once("GetFriendRequestsData", (data)=>{
-      setData([data]);  
+      setData([...data]);  
     })
 
 

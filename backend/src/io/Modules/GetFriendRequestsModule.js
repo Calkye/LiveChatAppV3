@@ -8,7 +8,7 @@ const GetFriendRequestsModule = async(clientUsername)=>{
     const UserAccountData = await clientDb.findOne({username: clientUsername}); 
     const UserFriendCollectionData = await friendDb.findOne({_id: UserAccountData._id}); 
      
-    if(!UserAccountData) await createFriendCollection(UserAccountData); 
+    if(!UserFriendCollectionData) await createFriendCollection(UserAccountData); 
     if(!UserAccountData) return {Success: false, Message: "No user exists"}; 
     
     const {requests} = UserFriendCollectionData;

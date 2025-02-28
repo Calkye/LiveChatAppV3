@@ -1,47 +1,51 @@
+import "./Css/Settings.css"; //Always import css files first
+
+// React imports 
 import { useState, useContext, useEffect } from "react";
+
+// Socket imports
 import { io } from "socket.io-client";
+
+// Context Api's 
 import { FriendContext } from "../../ContextApi/FriendContextApi.jsx";
 import { UserContext } from "../../ContextApi/UserContextApi.jsx";
+
+// Custom functions 
 import handleAddFriend from "./handleAddFriend.js";
 import GetFriendRequests from "./GetFriendRequests.js";
+import handleAcceptRequest from "./HandleAcceptRequest.js";
+
+// Svgs / Images 
 import settings from "../../../public/Settings.svg";
-import "./Css/Settings.css";
 
 const Settings = () => {
   const [modal, setModal] = useState(false);
   const [friendsModal, setFriendsModal] = useState(false);
 
-  const { addedUsernames, setAddedUsernames } = useContext(FriendContext);
+  const { addedUsernames, setAddedUsernames, friendUsernames, setFriendUsernames, selectedFriend, setSelectedFriend } = useContext(FriendContext);
   const { Username, password } = useContext(UserContext);
 
   const [tempFriendUsername, setTempFriendUsername] = useState("");
-  const [requestsSampleData, setRequestsSampleData] = useState([""]);
+  const [requestsSampleData, setRequestsSampleData] = useState([]);
+
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     const newSocket = io("http://localhost:3000/friends");
-
-    newSocket.on("connect", () => console.log("Connected:", newSocket.id));
-    newSocket.on("disconnect", () => console.log("Disconnected from server"));
-
     setSocket(newSocket);
+
+    const interval = setInterval(()=>{
+      if(newSocket && Username){
+        GetFriendRequests(newSocket, Username, setRequestsSampleData)
+      }
+    }, 5000); 
 
     return () => {
       newSocket.disconnect();
+      clearInterval(interval); 
     };
-  }, []);
+  }, [Username]);
 
-
-
-  useEffect(() => {
-    if (!socket) return;
-  
-    const interval = setInterval(() => {
-      GetFriendRequests(socket, Username, setRequestsSampleData);
-    }, 5000);
-  
-    return () => clearInterval(interval);
-  }, [socket, Username]);
   
 
   return (
@@ -76,6 +80,7 @@ const Settings = () => {
                       onClick={() => {
                         setFriendsModal((prevModal) => !prevModal);
                       }}
+                      className="AddFriendBtn"
                     >
                       Add Friend
                     </li>
@@ -116,7 +121,7 @@ const Settings = () => {
                         {requestsSampleData.map((friend) => {
                           return (
                             <div className="Request" key={friend}>
-                              <div className="Request-Info">
+                              <div className="Request-Info" onClick={()=>{handleAcceptRequest(socket, Username, friend, setFriendUsernames, setSelectedFriend); setModal((prevModal)=>!prevModal)}}>
                                 <h2>{friend}</h2>
                               </div>
                             </div>

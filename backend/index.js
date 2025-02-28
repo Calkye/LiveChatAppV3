@@ -14,10 +14,13 @@ import VerifyTokens from './src/Modules/Jwt/VerifyTokens.js';
 // Import socket io routes 
 import AddFriend from './src/io/routes/AddFriend.js';
 import GetFriendRequests from './src/io/routes/GetFriendRequests.js';
+import AcceptFriendRequest from './src/io/routes/AcceptFriendRequest.js';
+import RetrieveFriendList from './src/io/routes/RetrieveFriendList.js';
 
 // Import Express routes 
 import CreateAccountRoute from './src/express/Routes/CreateAccountRoute.js';
 import AddFriendRoute from './src/express/Routes/AddFriendRoute.js';
+
 
 dotenv.config(); 
 
@@ -54,6 +57,15 @@ friendsNameSpace.on('connection', (socket)=>{
     if(!socket || !GetFriendRequests) return;
     GetFriendRequests(socket, clientUsername); 
   })
+  socket.on('AcceptFriendRequest', (clientUsername, friendUsername)=>{
+    AcceptFriendRequest(socket, clientUsername, friendUsername);
+  })
+  socket.on('RetrieveFriendList', (clientUsername)=>{
+    RetrieveFriendList(socket, clientUsername);
+
+  })
+
+
 })
 
 

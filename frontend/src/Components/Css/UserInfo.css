@@ -7,7 +7,17 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  transition: all 0.1s ease-in-out;
 }
+.UserInfo-Container:hover{
+  cursor: pointer;
+  background-color: var(--InputPrimaryColor);
+}
+.UserInfo-Container.Message:hover{
+  cursor: default;
+  background-color: var(--MainButtonBackground);
+}
+
 .UserInfo-Container.Message{
   width: fit-content;
   min-width: 15rem;
