@@ -17,6 +17,7 @@ import handleAcceptRequest from "./HandleAcceptRequest.js";
 
 // Svgs / Images 
 import settings from "../../../public/Settings.svg";
+import Connection from "../../ContextApi/ConnectionContextApi.jsx";
 
 const Settings = () => {
   const [modal, setModal] = useState(false);
@@ -30,23 +31,44 @@ const Settings = () => {
 
   const [socket, setSocket] = useState(null);
 
+  
   useEffect(() => {
-    const newSocket = io("http://localhost:3000/friends");
-    setSocket(newSocket);
-
-    const interval = setInterval(()=>{
-      if(newSocket && Username){
-        GetFriendRequests(newSocket, Username, setRequestsSampleData)
-      }
-    }, 5000); 
+    // Establish a connection when the component mounts
+    Connection('friends')
+      .then((socket) => {
+        setSocket(socket);
+        // Now you can use the socket here
+      })
+      .catch((error) => {
+        console.error('Error connecting to socket:', error);
+      });
 
     return () => {
-      newSocket.disconnect();
-      clearInterval(interval); 
+      if (socket) {
+        socket.disconnect();
+        console.log(`Disconnected from socket with ID: ${socket.id}`);
+      }
     };
-  }, [Username]);
+  }, []); // Empty array ensures this only runs on mount
 
   
+  //Get friends every 500 milliseconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!socket) {
+        console.log("No socket");
+        return; // Don't continue if the socket is not ready
+      }
+      console.log("Getting friend requests");
+      GetFriendRequests(socket, Username, setRequestsSampleData);
+    }, 500);
+  
+    return () => {
+      clearInterval(interval); // Cleanup the interval
+    };
+  }, [socket, Username]); // Add socket and Username to dependencies
+  
+
 
   return (
     <>
@@ -121,7 +143,10 @@ const Settings = () => {
                         {requestsSampleData.map((friend) => {
                           return (
                             <div className="Request" key={friend}>
-                              <div className="Request-Info" onClick={()=>{handleAcceptRequest(socket, Username, friend, setFriendUsernames, setSelectedFriend); setModal((prevModal)=>!prevModal)}}>
+                              <div className="Request-Info" onClick={() => {
+                                handleAcceptRequest(socket, Username, friend, setFriendUsernames, setSelectedFriend);
+                                setModal((prevModal) => !prevModal);
+                              }}>
                                 <h2>{friend}</h2>
                               </div>
                             </div>

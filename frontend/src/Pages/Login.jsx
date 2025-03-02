@@ -6,16 +6,20 @@ import { FriendContext } from '../ContextApi/FriendContextApi.jsx';
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { io } from 'socket.io-client';
 
 import User from '../Lib/User.js'; 
 
 const Login = () => {
+
   const navigate = useNavigate(); 
   const { Username, setUsername, LoginStatus, setLoginStatus, password, setPassword} = useContext(UserContext)
   const {clientUsername, setClientUsername } = useContext(FriendContext); 
 
   const [username, setTempUsername ] = useState(''); 
   const [ tempPassword, setTempPassword ] = useState(''); 
+
+
 
   const HandleLogin = async(e)=>{
     e.preventDefault(); 
@@ -26,9 +30,7 @@ const Login = () => {
       setUsername(username); 
       setClientUsername(username); 
       setPassword(tempPassword); 
-      
       navigate('/MainApp', {replace: true})
-
     } 
     
   }
@@ -37,27 +39,37 @@ const Login = () => {
   return (
     <>
       <div className="Form-Wrapper">
-      <div className="Background" />
-      <form className="Form" onSubmit={HandleLogin}>
-        <div className="Input-Container">
-          <div className="input">
-            <label>Username</label>
-            <input type="text" value={username} onChange={(e)=>setTempUsername(e.target.value)}/>
+        <form className="Form" onSubmit={HandleLogin}>
+          <div className="Input-Container">
+            <div className="Input-Login">
+              <label>Username</label>
+              <input  
+              
+              type="text"
+              value={username}
+              onChange={(e)=>setTempUsername(e.target.value)}
+              placeholder='Please enter a username'  
+              />
+            </div>
+            <div className="Input-Login">
+              <label>Password</label>
+              <input 
+              type="password" 
+              value={tempPassword} 
+              onChange={(e)=>setTempPassword(e.target.value)}
+              placeholder='Please enter a password'
+              />
+            </div>
           </div>
-          <div className="input">
-            <label>Password</label>
-            <input type="password" value={tempPassword} onChange={(e)=>setTempPassword(e.target.value)}/>
+          <div className="Button-Login-Container">
+            <div className="Button-Login">
+              <button >Login</button>
+              <h3><Link to="/" className='Link'>Or Sign Up</Link></h3>
+            </div>
           </div>
-        </div>
-        <div className="Button-Container">
-          <div className="Button">
-            <button>Sign in</button>
-            <h4><Link to="/">Or Sign up</Link></h4>
-          </div>
-        </div>
-      </form>
-    </div>
-    
+        </form>
+      </div>
+      
     </>
   )
 }

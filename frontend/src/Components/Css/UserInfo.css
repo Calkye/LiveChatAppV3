@@ -1,59 +1,51 @@
 .UserInfo-Container{
-  width: 20.3125rem;
-  height: 5rem;
-  background-color: var(--MainButtonBackground);
-  padding: 0.55rem;
-  border-radius: 0.9375rem;
-  box-sizing: border-box;
   display: flex;
-  align-items: center;
-  transition: all 0.1s ease-in-out;
+  flex-direction: row;
+  
+  min-width: 20.3125rem;
+  min-height: 3.875rem;
+  
+  background-color: var(--MainButtonBackground);
+  
+  border-radius: 0.625rem;
 }
 .UserInfo-Container:hover{
   cursor: pointer;
   background-color: var(--InputPrimaryColor);
+  transition: all 0.125s ease-in-out;
 }
-.UserInfo-Container.Message:hover{
-  cursor: default;
-  background-color: var(--MainButtonBackground);
+.UserInfo-Container:hover h4{
+  color: black;
 }
-
-.UserInfo-Container.Message{
-  width: fit-content;
-  min-width: 15rem;
-}
-
-.UserInfo .Message h2{
-  color: white;
-  font-size: 1.3rem;
-}
-
-.UserInfo .Message h4{
-  color: var(--PrimaryTextColor);
-  font-size: 0.95rem;
-}
-
 
 
 .UserInfo{
   display: flex;
-  gap: 0.25rem;
-}
+  align-items: flex-start;
 
-.UserInfo .pfp{
-  width: 4rem;
-  height: 4rem;
-  background-color: white;
-  border-radius: 50%;
-}
+  padding: 0.75rem;
+  box-sizing: border-box;
 
-.UserInfo.Message .Message h2{
-  color: var(--PrimaryTextColor);
 }
-
-.UserInfo.Message .Message h4{
-  font-size: 1.25rem;
+.User-Details{ 
+  padding-left: 0.25rem;
+}
+.User-Details h2{
+  font-size: 0.875rem;
   color: white;
-  padding-left: 0.5rem;
-  padding-top: 0.25rem;
+  font-weight: 700;
+}
+.User-Details h4{
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--PrimaryTextColor);
+  padding-left: 0.5625rem;
+}
+
+.pfp{
+  height: 4rem;
+  width: 4rem;
+  background: white;
+  border-radius: 50%;
+
 }

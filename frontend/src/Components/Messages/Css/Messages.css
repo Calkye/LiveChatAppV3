@@ -9,6 +9,13 @@
   align-items: flex-start;
 }
 
+.Message-Container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
 .ReceivedMessages {
   flex: 0.35;
   height: 100%;

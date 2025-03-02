@@ -8,8 +8,9 @@ const VerifyPasswords = async(username, password)=>{
     const CurrentUser = await client.findOne({username: username}); 
     if(CurrentUser){ 
       // Check if Current users password is equal to the one in the database; 
-      const isMatch = bcrypt.compare(password, CurrentUser.password)
+      const isMatch = await bcrypt.compare(password, CurrentUser.password)
       if(isMatch){
+        console.log("Match: ", isMatch); 
         return { Success: true}
       }else{ 
         return {Success: false, message: "Invalid password"}

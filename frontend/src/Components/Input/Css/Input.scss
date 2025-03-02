@@ -10,7 +10,15 @@
     box-sizing: border-box;
     padding: 0.765rem;
     color: var(--SecondaryTextColor);
+    
   }
+}
+
+.Input form{ 
+  display: flex;
+  gap: 1rem;
+  
+
 }
 
 .SendButton{

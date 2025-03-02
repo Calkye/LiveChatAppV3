@@ -10,6 +10,11 @@
   color: var(--SecondaryTextColor);
 }
 
+.Input form {
+  display: flex;
+  gap: 1rem;
+}
+
 .SendButton img {
   width: 4rem;
   height: 4rem;

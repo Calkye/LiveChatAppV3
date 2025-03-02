@@ -26,7 +26,9 @@ export const FriendContextProvider = ({children})=>{
   const [pfp, setPfp] = useState(['']); 
   const [ selectedFriend, setSelectedFriend] = useState('');
 
-
+  useEffect(()=>{
+    console.log('Updated selected friend: ', selectedFriend); 
+  }, [selectedFriend])
  
   return ( 
     <FriendContext.Provider value={{ clientUsername, setClientUsername, friendUsernames, setFriendUsernames, addedUsernames, setAddedUsernames, Id, setId, pfp, setPfp, selectedFriend, setSelectedFriend}}>

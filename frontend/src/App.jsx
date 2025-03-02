@@ -16,7 +16,7 @@ function App() {
     if(!LoginStatus){
       nagivate('/Login')
     }
-  })
+  }, []); 
 
   return (
     <>
